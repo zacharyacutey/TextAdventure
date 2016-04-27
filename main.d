@@ -69,6 +69,15 @@ void fall()
     writeln("Can't move down from here!");
   }
 }
+void help_map()
+{
+  writeln("W - Up/North");
+  writeln("A - Left/West");
+  writeln("S - Down/South");
+  writeln("D - Right/East");
+  writeln("U - Ascend/Up");
+  writeln("M - Descend/Down");
+}
 void main()
 {
   map[[99,99,-9]]=BOSS;
