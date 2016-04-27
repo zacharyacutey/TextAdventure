@@ -2,7 +2,7 @@ import std.stdio;
 import std.random;
 int[int[3]] map; //Game Map
 int[3] pos; //Player position
-
+int health=1000;
 enum {
   GRASS, //Ground level nothing
   ENEMY_GRASS, //Ground level enemy
@@ -22,7 +22,7 @@ void generate_tile()
   {
     return;
   }
-  else if(pos[3]==0)
+  else if(pos[2]==0)
   {
     map[pos]=[GRASS,ENEMY_GRASS,ENTRANCE][uniform(0,3)];
   }
