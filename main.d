@@ -75,8 +75,31 @@ void help_map()
   writeln("A - Left/West");
   writeln("S - Down/South");
   writeln("D - Right/East");
-  writeln("U - Ascend/Up");
-  writeln("M - Descend/Down");
+  writeln("R - Ascend/Up");
+  writeln("V - Descend/Down");
+  writeln("H - Help");
+}
+
+void command_map()
+{
+  string s = readln();
+  if(s == "w" || s == "W") up();
+  if(s == "a" || s == "A") left();
+  if(s == "s" || s == "S") down();
+  if(s == "d" || s == "D") right();
+  if(s == "r" || s == "R") jump();
+  if(s == "v" || s == "V") fall();
+  if(s == "h" || s == "H") help_map();
+  action_tile();
+}
+void action_tile()
+{
+}
+bool player_attack(ref int whealth)
+{
+}
+bool enemy_attack()
+{
 }
 void main()
 {
