@@ -21,7 +21,7 @@ zacharywithanacuteoverthey@gmail.com
 */
 
 //GENERAL UTILITIES
-int gen(int x,int y)
+int gen(int x,int y) //generates a random integer int the range [x,y]
 {
   import std.random : uniform;
   return uniform!"[]"(x,y);
