@@ -1,4 +1,3 @@
-using System;
 /*
 Copyright (C) 2016 Zachary Taylor
 
@@ -20,6 +19,7 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
+using System;
 class TextAdventure {
   //GENERAL UTILITIES
   public static Random RGI = new Random();
