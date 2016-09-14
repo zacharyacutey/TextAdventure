@@ -22,7 +22,6 @@ zacharywithanacuteoverthey@gmail.com
 #include <cstdlib>
 using namespace std;
 
-//GENERAL UTILITIES
 int gen(int x,int y)
 {
   return rand()%(y-x+1)+x;
