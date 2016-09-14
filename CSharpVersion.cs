@@ -27,4 +27,8 @@ class TextAdventure {
   {
     return RGI.Next(x,y+1);
   }
+  public static void Main(string[] args)
+  {
+    
+  }
 }
