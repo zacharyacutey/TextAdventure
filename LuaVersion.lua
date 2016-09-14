@@ -25,7 +25,7 @@ zacharywithanacuteoverthey@gmail.com
 
 math.randomseed(os.time())
 
---GENERAL UTILITIES
+
 function gen(x,y)
   return math.random(x,y)
 end
