@@ -20,7 +20,7 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 
-//GENERAL UTILITIES
+
 function gen(x,y)
 {
   return Math.floor(Math.random()*(y-x+1)+1);
