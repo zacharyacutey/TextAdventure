@@ -19,8 +19,6 @@
 ⍝You can contact me @
 ⍝zacharywithanacuteoverthey@gmail.com
 
-⍝GENERAL UTILITIES
 gen←{(⍺-1)+?1+⍵-⍺}
-
-⍝write is an APL-ver only function for output.
-write←{⎕←⍵}
+⍝writeln is an APL-ver only function for output.
+writeln←{⎕←⍵}
