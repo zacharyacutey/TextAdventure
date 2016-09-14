@@ -20,7 +20,6 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 """
 
-#GENERAL UTILITIES
 def gen(x,y):
   from random import randint
   return randint(x,y)
