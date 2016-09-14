@@ -23,5 +23,5 @@ zacharywithanacuteoverthey@gmail.com
 using namespace std;
 int gen(int x,int y)
 {
-  //Going to have to look at Alex's text adventure for my gen func.
+  return rand()%(y-x+1)+x;
 }
