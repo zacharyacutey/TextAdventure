@@ -21,3 +21,6 @@
 
 ⍝GENERAL UTILITIES
 gen←{(⍺-1)+?1+⍵-⍺}
+
+⍝write is an APL-ver only function for output.
+write←{⎕←⍵}
