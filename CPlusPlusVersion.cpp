@@ -27,3 +27,6 @@ int gen(int x,int y)
 {
   return rand()%(y-x+1)+x;
 }
+int main()
+{
+}
