@@ -22,9 +22,11 @@ zacharywithanacuteoverthey@gmail.com
 
 var UI = {};
 UI.write = function(arg) {
+  document.getElementById("out").innerHTML += arg;
   };
 UI.writeln = function(arg) {
+  document.getElementById("out").innerHTML += arg + "<br>";
 };
 UI.readln = function() {
-  return prompt();
+  return window.prompt();
 };
