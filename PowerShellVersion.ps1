@@ -22,4 +22,5 @@
 #GENERAL UTILITIES
 function gen {
   param($x,$y);
+  return Get-Random -minimum $x -maximum $y+1;
 }
