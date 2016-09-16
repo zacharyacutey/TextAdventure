@@ -20,6 +20,7 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 #include <cstdlib>
+#include <iostream>
 using namespace std;
 
 int gen(int x,int y)
