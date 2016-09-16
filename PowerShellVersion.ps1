@@ -17,10 +17,9 @@
 #NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 #You can contact me @
 #zacharywithanacuteoverthey@gmail.com
-#I'll add it and TYPING later.
 
 #GENERAL UTILITIES
 function gen {
   param($x,$y);
-  return Get-Random -minimum $x -maximum $y+1;
+  return Get-Random -Minimum $x -Maximum $y+1; #Does this work in ps1? It doesn't work on tutorials point? WHY?
 }
