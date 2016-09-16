@@ -1,2 +1,2 @@
 # TextAdventure
-Just my text adventure! It's multilanguage. As in multi-programming-language. I put all the describing comments in the D version.
+Just my text adventure! It's in C++ and D, just in case Alex has any ideas.
