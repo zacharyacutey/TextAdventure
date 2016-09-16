@@ -20,10 +20,10 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 
-int generateRandomInteger(int lowerBound,int upperBound)
+int gen(int x,int y)
 {
   import std.random : uniform;
-  return uniform!"[]"(lowerBound,upperBound);
+  return uniform!"[]"(x,y);
 }
 
 void main()
