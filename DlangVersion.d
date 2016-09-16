@@ -26,6 +26,9 @@ int gen(int x,int y)
   return uniform!"[]"(x,y);
 }
 
+enum { TILE_EMPTY , TILE_ENEMY }
+
+
 void main()
 {
   
