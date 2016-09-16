@@ -23,9 +23,9 @@ zacharywithanacuteoverthey@gmail.com
 #include <iostream>
 using namespace std;
 
-int generateRandomInteger(int lowerBound,int upperBound)
+int gen(int x,int y)
 {
-  return rand()%(upperBound-lowerBound+1)+lowerBound;
+  return rand()%(y-x+1)+x;
 }
 int main()
 {
