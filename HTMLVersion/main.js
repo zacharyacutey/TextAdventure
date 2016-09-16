@@ -21,7 +21,7 @@ zacharywithanacuteoverthey@gmail.com
 */
 
 
-function gen(x,y)
+function generateRandomInteger(lowerBound,upperBound)
 {
-  return Math.floor(Math.random()*(y-x+1)+1);
+  return Math.floor(Math.random()*(upperBound-lowerBound+1)+1);
 }
