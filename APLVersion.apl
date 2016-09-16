@@ -19,6 +19,6 @@
 ⍝You can contact me @
 ⍝zacharywithanacuteoverthey@gmail.com
 
-gen←{(⍺-1)+?1+⍵-⍺}
+generateRandomInteger←{(⍺-1)+?1+⍵-⍺}
 writeln←{⎕←⍵}
 readln←{⍞}
