@@ -20,6 +20,6 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 """
 
-def gen(x,y):
+def generateRandomInteger(lowerBound,upperBound):
   from random import randint
-  return randint(x,y)
+  return randint(lowerBound,upperBound)
