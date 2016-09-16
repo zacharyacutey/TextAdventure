@@ -25,7 +25,7 @@ using namespace std;
 
 int generateRandomInteger(int lowerBound,int upperBound)
 {
-  return rand()%(y-x+1)+x;
+  return rand()%(upperBound-lowerBound+1)+lowerBound;
 }
 int main()
 {
