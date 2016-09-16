@@ -20,6 +20,5 @@
 ⍝zacharywithanacuteoverthey@gmail.com
 
 gen←{(⍺-1)+?1+⍵-⍺}
-⍝writeln is an APL-ver only function for output.
 writeln←{⎕←⍵}
 readln←{⍞}
