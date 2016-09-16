@@ -27,6 +27,9 @@ int gen(int x,int y)
 {
   return rand()%(y-x+1)+x;
 }
+
+enum { TILE_EMPTY , TILE_ENEMY };
+
 int main()
 {
 }
