@@ -21,5 +21,5 @@
 #GENERAL UTILITIES
 function gen {
   param($x,$y);
-  return Get-Random -Minimum $x -Maximum $y+1; #Does this work in ps1? It doesn't work on tutorials point? WHY?
+  return (Get-Random) % ($y - $x + 1) + $x
 }
