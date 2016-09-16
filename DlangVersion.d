@@ -20,12 +20,13 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 
-int gen(int x,int y)
+int generateRandomInteger(int lowerBound,int upperBound)
 {
   import std.random : uniform;
-  return uniform!"[]"(x,y);
+  return uniform!"[]"(lowerBound,upperBound);
 }
 
 void main()
 {
+  
 }
