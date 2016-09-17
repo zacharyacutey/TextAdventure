@@ -29,7 +29,10 @@ int gen(int x,int y)
 }
 
 enum { TILE_EMPTY , TILE_ENEMY };
-
+int random_tile()
+{
+  return gen(0,1);
+}
 int main()
 {
 }
