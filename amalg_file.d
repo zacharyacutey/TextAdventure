@@ -1,4 +1,3 @@
-//EVERYTHING CATTED TOGETHER...
 /*
 Copyright (C) 2016 Zachary Taylor
 
@@ -20,6 +19,33 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
+import std.stdio;
+void main()
+{
+  writeln("What is your name Player?");
+  string n = readln()[0..$-1];
+  Board b;
+  init_board(b);
+  Entity player;
+  Weapon w;
+  w.min_damage = 10;
+  w.max_damage = 30;
+  w.fail = [1,5];
+  w.name = "Your weapon";
+  player.attacks = [w];
+  player.max_health = 1000;
+  player.health = player.max_health;
+  player.fail = [1,4];
+  player.name = n;
+  while(true)
+  {
+    string l = readln();
+    foreach(i;l)
+    {
+      board_command(i,b,player);
+    }
+  }
+}
 int gen(int x,int y) //Returns a random integer in the range [x,y]
 {
 	import std.random;
@@ -46,30 +72,46 @@ struct Entity
   int armor;
   int[2] fail;
   Weapon[] attacks;
+  Weapon[] weapons()
+  {
+    return this.attacks;
+  }
+  int min_damage(int i=0)
+  {
+    return this.attacks[i].min_damage;
+  }
+  int max_damage(int i=0)
+  {
+    return this.attacks[i].max_damage;
+  }
+  void weapons(Weapon[] ws)
+  {
+    this.attacks = ws;
+  }
   int medkits;
 }
-void estats(Entity e)
+void estats(ref Entity e)
 {
   import std.stdio;
   writeln(e.name ~ " health:\t",e.health);
 }
-void pstats(Entity e)
+void pstats(ref Entity e)
 {
   import std.stdio;
   writeln(e.name ~ " health:\t",e.health);
   writeln("Max health:\t",e.max_health);
   writeln("Medkits:\t",e.medkits);
 }
-void stats(Entity e,Entity p)
+void stats(ref Entity e,ref Entity p)
 {
   estats(e);
   pstats(p);
 }
-bool is_dead(Entity e)
+bool is_dead(ref Entity e)
 {
   return e.health <= 0;
 }
-void do_damage(Entity harmer,Entity harmed,int weapon_index = 0)
+void do_damage(ref Entity harmer,ref Entity harmed,int weapon_index = 0)
 {
   import std.stdio;
   Weapon weapon = harmer.weapons[weapon_index];
@@ -91,7 +133,7 @@ void do_damage(Entity harmer,Entity harmed,int weapon_index = 0)
     writeln(harmer.name," attacked ",harmed.name," and gave ",damage," damage!");
   }
 }
-void action_command(char command,Entity player,Entity enemy)
+void action_command(char command,ref Entity player,ref Entity enemy)
 {
   switch(command)
   {
@@ -118,6 +160,8 @@ void action_command(char command,Entity player,Entity enemy)
       if(player.medkits > 0)
       {
         writeln("You used a medkit! Health fully restored!");
+	player.medkits--;
+	player.health = player.max_health;
       }
       else
       {
@@ -145,39 +189,39 @@ int gen_tile_type()
 {
   return gen(0,1);
 }
-void init_board(Board b)
+void init_board(ref Board b)
 {
   b.game_board[[0,0]]=TILE_EMPTY;
   b.game_board[[-1,-1]]=TILE_BOSS;
 }
-void gen_tile(Board b)
+void gen_tile(ref Board b)
 {
   if((b.position in b.game_board)==null)
   b.game_board[b.position] = gen_tile_type();
 }
-int current_tile(Board b)
+int current_tile(ref Board b)
 {
-  return b.game_board[b.position];
+  try { return b.game_board[b.position]; } catch(Exception o){ return gen(0,1); }
 }
-void left(Board b,Entity player)
+void left(ref Board b,ref Entity player)
 {
   b.position[0]--;
   gen_tile(b);
   maybe_fight(b,player);
 }
-void right(Board b,Entity player)
+void right(ref Board b,ref Entity player)
 {
   b.position[0]++;
   gen_tile(b);
   maybe_fight(b,player);
 }
-void up(Board b,Entity player)
+void up(ref Board b,ref Entity player)
 {
   b.position[1]++;
   gen_tile(b);
   maybe_fight(b,player);
 }
-void down(Board b,Entity player)
+void down(ref Board b,ref Entity player)
 {
   b.position[1]--;
   gen_tile(b);
@@ -188,7 +232,7 @@ void death_screen()
   writeln("YOU DIED");
   while(true) readln();
 }
-void maybe_fight(Board b,Entity player)
+void maybe_fight(ref Board b,ref Entity player)
 {
   string line;
   if(current_tile(b) == TILE_EMPTY)
@@ -202,20 +246,20 @@ void maybe_fight(Board b,Entity player)
     e.name = "Enemy";
     e.max_health = 500;
     e.health = 500;
-    w.name = "Weapon";
     Weapon w;
-    w.min_damage = 25;
+    w.name = "Weapon";
+    w.min_damage = 1;
     w.max_damage = 50;
     w.fail = [0,1];
     e.weapons = [w];
-    stats();
+    stats(e,player);
     while(!is_dead(player) && !is_dead(e))
     {
       line = readln();
       bool stop = false;
       foreach(i;line)
       {
-        stats();
+        stats(e,player);
         if(!stop) action_command(i,player,e);
         if(is_dead(player) || is_dead(e))
           stop = true;
@@ -256,7 +300,7 @@ void maybe_fight(Board b,Entity player)
     death_screen();
   }
 }
-void board_command(char c,Board b,Entity e)
+void board_command(char c,ref Board b,ref Entity e)
 {
   switch(c)
   {
@@ -275,6 +319,9 @@ void board_command(char c,Board b,Entity e)
     case 's':
     case 'S':
     down(b,e);
+    break;
+    case '\n':
+    case '\r':
     break;
     default:
     writeln("You just sit there, doing nothing...");
