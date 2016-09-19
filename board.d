@@ -143,3 +143,28 @@ void maybe_fight(Board b,Entity player)
     death_screen();
   }
 }
+void board_command(char c,Board b,Entity e)
+{
+  switch(c)
+  {
+    case 'a':
+    case 'A':
+    left(b,e);
+    break;
+    case 'd':
+    case 'D':
+    right(b,e);
+    break;
+    case 'w':
+    case 'W':
+    up(b,e);
+    break;
+    case 's':
+    case 'S':
+    down(b,e);
+    break;
+    default:
+    writeln("You just sit there, doing nothing...");
+    break;
+  }
+}
