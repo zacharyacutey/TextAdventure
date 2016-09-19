@@ -21,12 +21,12 @@ zacharywithanacuteoverthey@gmail.com
 */
 
 module misc;
-int gen(int x,int y)
+int gen(int x,int y) //Returns a random integer in the range [x,y]
 {
 	import std.random;
 	return uniform!"[]"(x,y);
 }
-bool is_fail(int[2] fail_stat)
+bool is_fail(int[2] fail_stat) //Returns 1 for fail_stat[0]/fail_stat[1] of the time, 0 otherwise.
 {
 	int pool = gen(1,fail_stat[1]);
 	return pool <= fail_stat[0];
