@@ -37,6 +37,22 @@ struct Entity
   int armor;
   int[2] fail;
   Weapon[] attacks;
+  Weapon[] weapons()
+  {
+    return this.attacks;
+  }
+  int min_damage(int i=0)
+  {
+    return this.attacks[i].min_damage;
+  }
+  int max_damage(int i=0)
+  {
+    return this.attacks[i].max_damage;
+  }
+  void weapons(Weapon[] ws)
+  {
+    this.attacks = ws;
+  }
   int medkits;
 }
 void estats(Entity e)
