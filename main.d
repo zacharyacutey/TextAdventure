@@ -20,6 +20,12 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 import std.stdio;
+import std.random;
+
+int gen(int x,int y)
+{
+	return uniform!"[]"(x,y);
+}
 struct Entity {
 	string name;
 	int armor;
@@ -27,7 +33,7 @@ struct Entity {
 	int max_health;
 	int min_damage;
 	int max_damage;
-	int dodge_chance;
+	int dodge_fail;
 	int damage_miss;
 	int medkits;
 }
@@ -43,7 +49,7 @@ void pstats(Entity p)
 	writeln("Your current Health:\t",p.health);
 	writeln("Your maximum Health:\t",p.max_health);
 	writeln("Damage Possible:\t",p.min_damage,"-",p.max_damage);
-	writeln("Dodge chance:\t",p.dodge_chance);
-	writeln("Chance of failed Attack:\t",p.damage_miss);
+	writeln("Dodge fail chance:\t1/",p.dodge_fail);
+	writeln("Chance of failed attack:\t1/",p.damage_miss);
 	writeln("Medkits:\t",p.medkits);
 }
