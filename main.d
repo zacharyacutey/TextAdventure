@@ -19,3 +19,12 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
+struct Entity {
+	string name;
+	int armor;
+	int health;
+	int max_health;
+	int min_damage;
+	int max_damage;
+	int medkits;
+}
