@@ -21,6 +21,7 @@ zacharywithanacuteoverthey@gmail.com
 */
 module combat;
 import misc;
+import std.stdio;
 struct Weapon
 {
   string name;
