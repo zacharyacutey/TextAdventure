@@ -20,6 +20,42 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 import std.stdio;
+char alex_char(ref Entity player,ref Entity alex)
+{
+	if(player.attacks[0].max_damage > alex.health)
+	{
+		if(alex.medkits > 0)
+		{
+			return 'm';
+		}
+		else
+		{
+			return "qd"[gen(0,1)];
+		}
+	}
+	else
+	{
+		return 'b';
+	}
+}
+void alex_attack(char c,ref Entity player,ref Entity alex)
+{
+}
+
+void boss(ref Entity player){
+	Entity alex;
+	Weapon big;
+	Weapon quick;
+	big.name="BIG SLASH";
+	quick.name="QUICK SLASH";
+	big.min_damage = 15;
+	big.max_damage = 50;
+	big.fail = [1,4];
+	quick.min_damage = 5;
+	quick.max_damage = 12;
+	quick.fail = [1,10];
+	alex.attacks=[big,quick];
+}
 void main()
 {
   writeln("What is your name Player?");
@@ -291,8 +327,9 @@ void maybe_fight(ref Board b,ref Entity player)
   }
   else if(current_tile(b) == TILE_BOSS)
   {
-    writeln("The boss Alex_Player approaches!");
+    writeln("The boss Alex approaches!");
     writeln("AND HE TELLS YOU THIS BATTLE ISN'T READY YET! GET LOST!");
+    boss(player);
   }
   else
   {
