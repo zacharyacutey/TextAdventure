@@ -19,19 +19,7 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
-
-int gen(int x,int y)
-{
-  import std.random : uniform;
-  return uniform!"[]"(x,y);
-}
-
-enum { TILE_EMPTY , TILE_ENEMY }
-int random_tile()
-{
-  return gen(0,1);
-}
-
+module main;
 void main()
 {
   
