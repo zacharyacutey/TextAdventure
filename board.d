@@ -20,6 +20,126 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 module board;
+import gen;
+import misc;
 enum { TILE_EMPTY, TILE_ENEMY, TILE_BOSS }
-struct Board {
+struct Board
+{
+  int[int[2]] game_board;
+  int[2] position;
+}
+int gen_tile_type()
+{
+  return gen(0,1);
+}
+void init_board(Board b)
+{
+  b.game_board[[0,0]]=TILE_EMPTY;
+  b.game_board[[-1,-1]]=TILE_BOSS;
+}
+void gen_tile(Board b)
+{
+  if((b.position in b.game_board)==null)
+  b.game_board[b.position] = gen_tile_type();
+}
+int current_tile(Board b)
+{
+  return b.game_board[b.position];
+}
+void left(Board b,Entity player)
+{
+  b.position[0]--;
+  gen_tile(b);
+  maybe_fight(b,player);
+}
+void right(Board b,Entity player)
+{
+  b.position[0]++;
+  gen_tile(b);
+  maybe_fight(b,player);
+}
+void up(Board b,Entity player)
+{
+  b.position[1]++;
+  gen_tile(b);
+  maybe_fight(b,player);
+}
+void down(Board b,Entity player)
+{
+  b.position[1]--;
+  gen_tile(b);
+  maybe_fight(b,player);
+}
+void death_screen()
+{
+  writeln("YOU DIED");
+  while(true) readln();
+}
+void maybe_fight(Board b,Entity player)
+{
+  string line;
+  if(current_tile(b) == TILE_EMPTY)
+  {
+    writeln("There is nothing but the ground!");
+  }
+  else if(current_tile(b) == TILE_ENEMY)
+  {
+    writeln("There is an enemy!");
+    Entity e;
+    e.name = "Enemy";
+    e.max_health = 500;
+    e.health = 500;
+    w.name = "Weapon";
+    Weapon w;
+    w.min_damage = 25;
+    w.max_damage = 50;
+    w.fail = [0,1];
+    e.weapons = [w];
+    stats();
+    while(!is_dead(player) && !is_dead(e))
+    {
+      line = readln();
+      bool stop = false;
+      foreach(i;line)
+      {
+        stats();
+        if(!stop) action_command(i,player,e);
+        if(is_dead(player) || is_dead(e))
+          stop = true;
+      }
+    }
+    if(is_dead(player)) death_screen();
+    writeln("You killed the enemy!");
+    writeln("Select something to loot: 1-Medkit 2-Armor");
+    while(true)
+    {
+      line = readln();
+      if(line == "1\n")
+      {
+        writeln("You took a medkit!");
+        player.medkits++;
+        break;
+      }
+      else if(line == "2\n")
+      {
+        writeln("You took a piece of armor");
+        player.armor++;
+        break;
+      }
+      else
+      {
+        writeln("You can't just stand there!");
+      }
+    }
+  }
+  else if(current_tile(b) == TILE_BOSS)
+  {
+    writeln("The boss Alex_Player approaches!");
+    writeln("AND HE TELLS YOU THIS BATTLE ISN'T READY YET! GET LOST!");
+  }
+  else
+  {
+    writeln("YOU FELL INTO A HOLE WHERE YOU BELONG, YOU HACKER! [Or the game's glitched]");
+    death_screen();
+  }
 }
