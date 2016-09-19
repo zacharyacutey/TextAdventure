@@ -26,5 +26,7 @@ struct Entity {
 	int max_health;
 	int min_damage;
 	int max_damage;
+	int dodge_chance;
+	int damage_miss;
 	int medkits;
 }
