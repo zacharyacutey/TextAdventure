@@ -22,6 +22,7 @@ zacharywithanacuteoverthey@gmail.com
 module board;
 import gen;
 import misc;
+import std.stdio;
 enum { TILE_EMPTY, TILE_ENEMY, TILE_BOSS }
 struct Board
 {
