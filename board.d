@@ -90,20 +90,20 @@ void maybe_fight(Board b,Entity player)
     e.name = "Enemy";
     e.max_health = 500;
     e.health = 500;
-    w.name = "Weapon";
     Weapon w;
+    w.name = "Weapon";
     w.min_damage = 25;
     w.max_damage = 50;
     w.fail = [0,1];
     e.weapons = [w];
-    stats();
+    stats(e,player);
     while(!is_dead(player) && !is_dead(e))
     {
       line = readln();
       bool stop = false;
       foreach(i;line)
       {
-        stats();
+        stats(e,player);
         if(!stop) action_command(i,player,e);
         if(is_dead(player) || is_dead(e))
           stop = true;
