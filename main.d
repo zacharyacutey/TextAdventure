@@ -19,6 +19,7 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
+import std.stdio;
 struct Entity {
 	string name;
 	int armor;
@@ -29,4 +30,20 @@ struct Entity {
 	int dodge_chance;
 	int damage_miss;
 	int medkits;
+}
+void estats(Entity e)
+{
+	writeln("Enemy Name:\t",e.name);
+	writeln("Enemy Health:\t",e.health);
+}
+void pstats(Entity p)
+{
+	writeln("Your Name:\t",p.name);
+	writeln("Your current Armor:\t",p.armor);
+	writeln("Your current Health:\t",p.health);
+	writeln("Your maximum Health:\t",p.max_health);
+	writeln("Damage Possible:\t",p.min_damage,"-",p.max_damage);
+	writeln("Dodge chance:\t",p.dodge_chance);
+	writeln("Chance of failed Attack:\t",p.damage_miss);
+	writeln("Medkits:\t",p.medkits);
 }
