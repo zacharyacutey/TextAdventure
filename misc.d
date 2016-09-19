@@ -19,12 +19,11 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
-import std.stdio;
-import std.random;
 
 module misc;
 int gen(int x,int y)
 {
+	import std.random;
 	return uniform!"[]"(x,y);
 }
 bool is_fail(int[2] fail_stat)
