@@ -20,4 +20,18 @@ You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
 module combat;
+import misc;
 struct Weapon
+{
+  string name;
+  int min_damage;
+  int max_damage;
+  int[2] fail;
+}
+struct Entity
+{
+  string name;
+  int health;
+  int max_health;
+  int[2] dodge_fail;
+}
