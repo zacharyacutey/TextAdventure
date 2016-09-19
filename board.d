@@ -19,3 +19,7 @@ NOTE: MY LEGAL NAME IS SPELLED WITHOUT THE ACUTE ACCENT
 You can contact me @
 zacharywithanacuteoverthey@gmail.com
 */
+module board;
+enum { TILE_EMPTY, TILE_ENEMY, TILE_BOSS }
+struct Board {
+}
