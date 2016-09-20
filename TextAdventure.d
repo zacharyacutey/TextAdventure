@@ -22,7 +22,7 @@ zacharywithanacuteoverthey@gmail.com
 import std.stdio;
 char alex_char(ref Entity player,ref Entity alex)
 {
-	if(player.attacks[0].max_damage - alex.armor > alex.health)
+	if(player.attacks[0].max_damage - alex.armor >= alex.health)
 	{
 		if(alex.medkits > 0)
 		{
@@ -80,7 +80,7 @@ void you_attack(char c,char ac,ref Entity player,ref Entity alex)
 			}
 			break;
 		case 'd':
-			if(ac == 'd') writeln("You both swerved as if you were dodging something");
+			writeln("You have somehow lost the ability to dodge!"); //I'm too lazy to implement that.
 			break;
 		case 'm':
 			if(player.medkits > 0)
