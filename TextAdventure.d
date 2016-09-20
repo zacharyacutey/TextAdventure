@@ -99,13 +99,12 @@ void you_attack(char c,char ac,ref Entity player,ref Entity alex)
 			break;
 		default:
 			writeln("WHAT ARE YOU DOING, THIS GUY IS AS STORNG AS YOU!!!!");
-			writeln("Alex: You entered an invalid command! HAHA!");
 			break;
 	}
 }
 void boss(ref Entity player){
         string line;
-	writeln("Here, have full health");
+	writeln("You suddenly full health");
 	player.health = player.max_health;
 	Entity alex;
 	Weapon big;
@@ -157,8 +156,7 @@ void boss(ref Entity player){
 	writeln("ALEX SAYS: I WIN!");
     	death_screen();
     }
-    writeln("You defeat Alex, then you realize Zach deletes the whole world before your ey--");
-    writeln("ZACH---There's nothing left!");
+    writeln("You defeat Alex, your game is over!");
     death_screen();
 }
 void main()
