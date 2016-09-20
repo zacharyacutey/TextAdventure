@@ -22,7 +22,7 @@ zacharywithanacuteoverthey@gmail.com
 import std.stdio;
 char alex_char(ref Entity player,ref Entity alex)
 {
-	if(player.attacks[0].max_damage > alex.health)
+	if(player.attacks[0].max_damage - alex.armor > alex.health)
 	{
 		if(alex.medkits > 0)
 		{
@@ -40,9 +40,73 @@ char alex_char(ref Entity player,ref Entity alex)
 }
 void alex_attack(char c,ref Entity player,ref Entity alex)
 {
+	switch(c)
+	{
+		case 'b':
+			writeln("Alex: BIG SLASH");
+			do_damage(alex,player,0);
+			break;
+		case 'q':
+			writeln("Alex: QUICK SLASH");
+			do_damage(alex,player,1);
+			break;
+		case 'm':
+			writeln("ALEX uses a medkit! YES, he has medkits!");
+			alex.medkits--;
+			alex.health = alex.max_health;
+			break;
+		default:
+			break;
+	}
 }
-
+void you_attack(char c,char ac,ref Entity player,ref Entity alex)
+{
+	switch(c)
+	{
+		case 'a':
+			if(ac == 'd' && is_fail(alex.fail))
+			{
+				writeln("You attack, and Alex tries to dodge and fails!");
+				do_damage(player,alex);
+			}
+			else if(ac == 'd')
+			{
+				writeln("You attack, and Alex DODGES!");
+			}
+			else
+			{
+				writeln("You attack Alex!");
+				do_damage(player,alex);
+			}
+			break;
+		case 'd':
+			if(ac == 'd') writeln("You both swerved as if you were dodging something");
+			break;
+		case 'm':
+			if(player.medkits > 0)
+			{
+				writeln("You use a medkit!");
+				player.medkits--;
+				player.health = player.max_health;
+			}
+			else
+			{
+				writeln("You really shouldn't be fooling around, as you're out of medkits!");
+				writeln("YOU REALIZE YOU OPENED YOURSELF UP FOR ATTACK!");
+			}
+			break;
+		case '\n':
+			break;
+		default:
+			writeln("WHAT ARE YOU DOING, THIS GUY IS AS STORNG AS YOU!!!!");
+			writeln("Alex: You entered an invalid command! HAHA!");
+			break;
+	}
+}
 void boss(ref Entity player){
+        string line;
+	writeln("Here, have full health");
+	player.health = player.max_health;
 	Entity alex;
 	Weapon big;
 	Weapon quick;
@@ -55,6 +119,47 @@ void boss(ref Entity player){
 	quick.max_damage = 12;
 	quick.fail = [1,10];
 	alex.attacks=[big,quick];
+	alex.name = "ALEX TRAHAN";
+	alex.fail = [1,4];
+	alex.max_health = player.max_health;
+	alex.health = alex.max_health;
+	if(player.armor > 20)
+	{
+		writeln("You have so much armor, it collapses around you during this fight! ARMOR IS NONE!");
+		player.armor = 0;
+	}
+	alex.armor = player.armor;
+	alex.medkits = player.medkits;
+    while(!is_dead(player) && !is_dead(alex))
+    {
+      line = readln()[0..$-1];
+      bool stop = false;
+      foreach(i;line)
+      {
+	char c;
+        pstats(player);
+	pstats(alex);
+        if(!stop)
+	{
+		c = alex_char(player,alex);
+		you_attack(i,c,player,alex);
+		if(!is_dead(alex))
+		{
+			alex_attack(c,player,alex);
+		}
+	}
+        if(is_dead(player) || is_dead(alex))
+          stop = true;
+      }
+    }
+    if(is_dead(player))
+    {
+	writeln("ALEX SAYS: I WIN!");
+    	death_screen();
+    }
+    writeln("You defeat Alex, then you realize Zach deletes the whole world before your ey--");
+    writeln("ZACH---There's nothing left!");
+    death_screen();
 }
 void main()
 {
@@ -75,7 +180,7 @@ void main()
   player.name = n;
   while(true)
   {
-    string l = readln();
+    string l = readln()[0..$-1];
     foreach(i;l)
     {
       board_command(i,b,player);
@@ -327,8 +432,7 @@ void maybe_fight(ref Board b,ref Entity player)
   }
   else if(current_tile(b) == TILE_BOSS)
   {
-    writeln("The boss Alex approaches!");
-    writeln("AND HE TELLS YOU THIS BATTLE ISN'T READY YET! GET LOST!");
+    writeln("The boss Alex approaches! You feel like you're fighting something not from this world!");
     boss(player);
   }
   else
